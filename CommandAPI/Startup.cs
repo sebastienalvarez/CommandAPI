@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace CommandAPI
 {
@@ -30,7 +32,10 @@ namespace CommandAPI
             //SQLServer database services
             services.AddDbContext<CommandContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CommandContextSqlServer")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+
+            // Services for mapping with AutoMapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Dependency Injection
             //services.AddScoped<ICommandAPIRepository, MockCommandAPIRepository>(); // Mock for first tests

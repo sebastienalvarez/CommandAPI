@@ -20,12 +20,20 @@ namespace CommandAPI.Data
         // METHODS
         public void CreateCommand(Command command)
         {
-            throw new NotImplementedException();
+            if(command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+            context.Commands.Add(command);
         }
 
         public void DeleteCommand(Command command)
         {
-            throw new NotImplementedException();
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+            context.Commands.Remove(command);
         }
 
         public IEnumerable<Command> GetAllCommands()
@@ -40,12 +48,12 @@ namespace CommandAPI.Data
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (context.SaveChanges() >= 1);
         }
 
         public void UpdateCommand(Command command)
         {
-            throw new NotImplementedException();
+            // Implementation not necessary
         }
     }
 }
