@@ -35,6 +35,13 @@ namespace CommandAPI.Data
                     HowTo = "How to apply a migration in database",
                     CommandLine = "update-database",
                     Platform = ".NET Core EF"
+                },
+                                new Command
+                {
+                    Id = 2,
+                    HowTo = "How to list files and folder",
+                    CommandLine = "ls",
+                    Platform = "Linux bash"
                 }
             };
             return commands;
